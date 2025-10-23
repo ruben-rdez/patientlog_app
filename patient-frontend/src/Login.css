@@ -1,0 +1,74 @@
+/* Container fills the screen and centers the form */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0a0a0a; /* dark background */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* The card */
+.login-card {
+  background-color: #1e1e1e;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  width: 320px;
+  text-align: center;
+}
+
+/* Title */
+.login-card h1 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+/* Subtitle */
+.login-subtitle {
+  color: #bbb;
+  font-size: 0.9rem;
+  margin-bottom: 30px;
+}
+
+/* Input fields */
+.login-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: none;
+  background-color: #2c2c2c;
+  color: #fff;
+  font-size: 1rem;
+}
+
+/* Placeholder text */
+.login-card input::placeholder {
+  color: #777;
+}
+
+/* Login button */
+.login-card button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: #4caf50;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* Button hover */
+.login-card button:hover {
+  background-color: #45a049;
+}
+
+/* Error message */
+.login-error {
+  color: #ff5555;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
