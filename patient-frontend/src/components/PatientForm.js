@@ -2,22 +2,19 @@ import React, { useState, useEffect } from 'react';
 import './PatientForm.css';
 
 const PatientForm = ({ initialPatient, onSubmit }) => {
-  // estado interno del formulario
   const [patient, setPatient] = useState({ firstName: '', lastName: '', age: '' });
 
-  // considerar que estamos en modo edición SOLO si initialPatient tiene id válido
+  // consider that we are in edit mode ONLY if initialPatient has a valid id
   const isEditing = !!(initialPatient && (initialPatient.id !== undefined && initialPatient.id !== null));
 
   useEffect(() => {
     if (isEditing) {
-      // cargar datos para editar
       setPatient({
         firstName: initialPatient.firstName ?? '',
         lastName: initialPatient.lastName ?? '',
         age: initialPatient.age ?? ''
       });
     } else {
-      // limpiar formulario cuando no haya edición
       setPatient({ firstName: '', lastName: '', age: '' });
     }
   }, [isEditing, initialPatient]);
@@ -29,7 +26,7 @@ const PatientForm = ({ initialPatient, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // enviar el objeto tal cual al parent (App.js) que decidirá POST o PUT
+    // send the object as is to the parent (App.js), which will decide whether to POST or PUT
     onSubmit(patient);
 	
 	if (!isEditing) {

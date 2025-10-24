@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/auth")
 public class AuthController {
 
-    @GetMapping("/me")
+    @GetMapping("/login")
     public Map<String, Object> getCurrentUser(Authentication authentication) {
         if (authentication == null || !authentication.isAuthenticated()) {
             return Collections.emptyMap(); 

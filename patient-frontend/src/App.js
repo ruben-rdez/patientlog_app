@@ -13,7 +13,7 @@ function App() {
   const handleLogin = async (username, password) => {
     const apiClient = createApiClient(username, password);
     try {
-      const response = await apiClient.get('/auth/me');
+      const response = await apiClient.get('/auth/login');
       const userInfo = response.data;
       setUser({ ...userInfo, apiClient }); // store api client for future calls
     } catch (error) {
@@ -25,10 +25,10 @@ function App() {
 	const fetchPatients = useCallback(async () => {
 	  if (!user) return;
 	  try {
-		const response = await user.apiClient.get('/patients');
-		setPatients(response.data);
+		  const response = await user.apiClient.get('/patients');
+		  setPatients(response.data);
 	  } catch (error) {
-		console.error('Error fetching patients', error);
+		  console.error('Error fetching patients', error);
 	  }
 	}, [user]);
 
@@ -47,15 +47,14 @@ function App() {
     try {
       if (editingPatient) {
         await user.apiClient.put(`/patients/${editingPatient.id}`, patientData);
-		setEditingPatient(null);
-		alert("Patient updated successfully ✅");
+		    setEditingPatient(null);
+		    alert("Patient updated successfully ✅");
       } else {
-		await user.apiClient.post('/patients', patientData);
-		setEditingPatient({}); // valor temporal
-		setTimeout(() => setEditingPatient(null), 0);
-		alert("Patient added successfully ✅");
+		    await user.apiClient.post('/patients', patientData);
+		    setEditingPatient({}); 
+		    setTimeout(() => setEditingPatient(null), 0);
+		    alert("Patient added successfully ✅");
       }
-	  
       await fetchPatients();
       setEditingPatient(null);
     } catch (error) {
@@ -67,8 +66,8 @@ function App() {
   
   const handleDeletePatient = async (id) => {
     if (!user) return;
-	const confirmed = window.confirm("Are you sure you want to delete this patient?");
-	if (!confirmed) return;
+	  const confirmed = window.confirm("Are you sure you want to delete this patient?");
+	  if (!confirmed) return;
     try {
       await user.apiClient.delete(`/patients/${id}`);
       fetchPatients();

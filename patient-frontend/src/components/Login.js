@@ -12,8 +12,8 @@ const Login = ({ onLogin }) => {
       setError('Please enter username and password');
       return;
     }
-    setError('');
-    onLogin(username, password);
+      setError('');
+      onLogin(username, password);
   };
 
   return (
