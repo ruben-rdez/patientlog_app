@@ -41,6 +41,14 @@ public class SecurityConfig {
             .cors(Customizer.withDefaults())
             .authenticationProvider(authenticationProvider()) 
             .authorizeHttpRequests(auth -> auth
+				.requestMatchers(
+					"/v3/api-docs/**",
+					"/swagger-ui/**",
+					"/swagger-ui.html"
+				).permitAll()
+				.requestMatchers("/actuator/health").permitAll()
+				.requestMatchers("/actuator/**").hasRole("ADMIN")
+				.requestMatchers("/swagger/actuator/**").hasRole("ADMIN")
                 .requestMatchers("/api/v1/auth/**").hasAnyRole("CONSULTOR", "ADMIN")
                 .requestMatchers("/api/v1/patients/**").authenticated()
                 .anyRequest().permitAll()

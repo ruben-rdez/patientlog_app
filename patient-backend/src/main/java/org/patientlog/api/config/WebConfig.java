@@ -10,14 +10,20 @@ import java.util.List;
 
 @Configuration
 public class WebConfig {
+	
+	private final CorsProperties corsProperties;
+
+    public WebConfig(CorsProperties corsProperties) {
+        this.corsProperties = corsProperties;
+    }
 
     @Bean
 	public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration cors = new CorsConfiguration();
-        cors.setAllowedOrigins(List.of("http://localhost:3000")); // React app origin
-        cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        cors.setAllowedHeaders(List.of("*"));
-        cors.setAllowCredentials(true);
+		cors.setAllowedOrigins(corsProperties.getAllowedOrigins());
+        cors.setAllowedMethods(corsProperties.getAllowedMethods());
+        cors.setAllowedHeaders(corsProperties.getAllowedHeaders());
+        cors.setAllowCredentials(corsProperties.isAllowCredentials());
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", cors);
